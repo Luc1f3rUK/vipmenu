@@ -1,0 +1,18 @@
+"Updater"
+{
+	"Information"
+	{
+		"Version"
+		{
+			"Latest"	"1.0.0"
+		}
+		"Notes"	"Not ready for release"
+	}
+	
+	"Files"
+	{
+		"Plugin"	"Path_SM/plugins/vipmenu.smx"
+		
+		"Source"	"Path_SM/scripting/vipmenu.sp"
+	}
+}

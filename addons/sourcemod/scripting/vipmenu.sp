@@ -1,7 +1,7 @@
 #include <sourcemod>
 #include <updater>
 
-#define UPDATE_URL "http://yusufali.ca/plugins/vipmenu/master/"
+#define UPDATE_URL "https://raw.githubusercontent.com/RyanMonkey/vipmenu/master/addons/sourcemod/updatefile.txt"
 
 public Plugin:myinfo = {
 	name = "VIP Menu"

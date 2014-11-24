@@ -1,5 +1,7 @@
 #include <sourcemod>
 #include <updater>
+#include <tf2_stocks>
+
 
 #define UPDATE_URL "https://raw.githubusercontent.com/RyanMonkey/vipmenu/master/addons/sourcemod/updatefile.txt"
 
@@ -9,7 +11,7 @@ public Plugin:myinfo = {
 	name = "VIP Menu"
 	, author = "Yusuf Ali"
 	, description = ""
-	, version = "1.0.0"
+	, version = "0.0.0"
 	, url = "https://github.com/RyanMonkey/vipmenu"
 }
 
@@ -73,6 +75,40 @@ buildVIP_menu(){
 }
 
 /* triggered when item in vip menu is selected */
-public vipMenHandle(Handle:menu, MenuAction:action, param1, param2 ){
+public vipMenHandle(Handle:menu, MenuAction:action, client, param2 ){
+	switch( action ){
+		case MenuAction_Select:{
+			decl String:info[32];
+			GetMenuItem( menu, param2, info, sizeof(info))
 
+			if( StrEqual(info,"swap") ){
+				switch( GetClientTeam(client) ){
+					case ( _:TFTeam_Red ): {
+						FakeClientCommand( client, "sm_blue" )
+					}
+					case ( _:TFTeam_Blue ): {
+						FakeClientCommand( client, "sm_red" )	
+					}
+				}
+			}
+			else if( StrEqual(info,"tp") ){
+				FakeClientCommand( client, "sm_thirdperson" )
+			}
+			else if( StrEqual(info,"fp") ){
+				FakeClientCommand( client, "sm_firstperson" )
+			}
+			else if( StrEqual(info,"help") ){
+				FakeClientCommand( client, "sm_callforhelp" )
+			}
+			else if( StrEqual(info,"unusual") ){
+				FakeClientCommand( client, "sm_unusual" )
+			}
+
+			/* stuff for vote_kick and what not */
+			else if( StrEqual(info,"vote_kick") ){
+			}
+		}
+	}
+
+	return 0;
 }
